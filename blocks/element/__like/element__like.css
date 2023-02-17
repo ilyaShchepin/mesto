@@ -1,11 +1,10 @@
 .element__like {
   background-image: url('../../../images/heart.svg');
-  position: absolute;
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  top: 312px;
-  left: 240px;
+  display: flex;
+  align-items: center;
   border: 0;
   width: 22px;
   height: 19px;
