@@ -10,10 +10,18 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 665px) {
   .profile__subtitle {
     text-align: center;
     margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 385px) {
+  .profile__subtitle {
+    max-width: 282px  ;
+    font-size: 16px;
+    line-height: 19px;
   }
 }
 
@@ -21,5 +29,6 @@
   .profile__subtitle {
     font-size: 14px;
     line-height: 17px;
+    margin-bottom: 0;
   }
 }
