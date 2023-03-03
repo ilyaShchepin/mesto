@@ -1,6 +1,6 @@
 let profileButtonEdit = document.querySelector('.profile__edit-button');
 const closeButtonPopup = document.querySelectorAll('.popup__close-button');
-const popupEditForm = document.querySelector('.popup_type_edit_form');
+const popupEditForm = document.querySelector('.popup_type_edit-form');
 const popupForm = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const discriptionInput = document.querySelector('.popup__input_type_discription');
@@ -72,7 +72,7 @@ popupForm.addEventListener('submit', handleFormSubmit);
 
 //5 спринт
 const profileButtonAdd = document.querySelector('.profile__add-button');
-const popupAddForm = document.querySelector('.popup_type_add_form');
+const popupAddForm = document.querySelector('.popup_type_add-form');
 const closeButtonPopupAdd = document.querySelector('.popup__close-button_type_add');
 
 //открытие попапа добавления места
