@@ -22,55 +22,13 @@
     </section>
     <section class="elements">
       <ul class="element">
-        <li class="element__list">
-          <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-          <div class="element__cards">
-            <h2 class="element__title">Карачаевск</h2>
-            <button class="element__like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="element__list">
-          <img class="element__image" src="./images/elbrus.jpg" alt="Эльбрус">
-          <div class="element__cards">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="element__list">
-          <img class="element__image" src="./images/dombay.jpg" alt="Домбай">
-          <div class="element__cards">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="element__list">
-          <img class="element__image" src="./images/elbrus.jpg" alt="Эльбрус">
-          <div class="element__cards">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="element__list">
-          <img class="element__image" src="./images/dombay.jpg" alt="Домбай">
-          <div class="element__cards">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
-        <li class="element__list">
-          <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-          <div class="element__cards">
-            <h2 class="element__title">Карачаево-Черкессия</h2>
-            <button class="element__like" type="button" aria-label="Лайк"></button>
-          </div>
-        </li>
       </ul>
     </section>
   </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_edit_form">
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть попап"></button>
         <form class="popup__form" name="profile-form">
@@ -83,6 +41,36 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_type_add_form">
+      <div class="popup__container">
+        <button class="popup__close-button popup__close-button_type_add" type="button" aria-label="Закрыть попап"></button>
+        <form class="popup__form popup__form_type_card" name="profile-form">
+          <h2 class="popup__title">Новое место</h2>
+          <div class="popup__inputs">
+            <input class="popup__input popup__input_type_place" placeholder="Название" name="name">
+            <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" name="link">
+          </div>
+          <button class="popup__save-button" type="submit" aria-label="Сохранить">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_type_image">
+      <div class="popup__overlay">
+        <img class="popup__pic" src="#" alt="#">;
+        <button class="popup__close-button popup__close-button_type_pic" type="button" aria-label="Закрыть попап"></button>
+        <p class="popup__pic-title">
+      </div>
+    </div>
+    <template id="template-card">
+      <li class="element__list">
+        <button class="element__trash" typt="button" aria-label="Удаление"></button>
+        <img class="element__image" src="#" alt="#">
+        <div class="element__cards">
+          <h2 class="element__title"></h2>
+          <button class="element__like" type="button" aria-label="Лайк"></button>
+        </div>
+      </li>
+    </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

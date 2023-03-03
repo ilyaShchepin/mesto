@@ -11,4 +11,5 @@
   right: 0;
   z-index: 3;
   background-color: rgba(0,0,0,0.5);
+  transition: all 0.6s ease 0s;
 }
