@@ -37,31 +37,33 @@ const initialCards = [
   }
 ]; 
 
-function addPopup (popup) {
-  document.addEventListener('keydown', closeEsc);
-  popup.addEventListener('mousedown', closeClick);
+function setCloseListeners (popup) {
+  document.addEventListener('keydown', handleEscape);
+  popup.addEventListener('mousedown', handleOverlay);
 }
 
-function removePopup (popup) {
-  document.removeEventListener('keydown', closeEsc);
-  popup.removeEventListener('mousedown', closeClick);
+function removeCloseListeners (popup) {
+  document.removeEventListener('keydown', handleEscape);
+  popup.removeEventListener('mousedown', handleOverlay);
 }
 
-function closeEsc(evt) {
+function handleEscape(evt) {
   if (evt.key === 'Escape') {
     const popup = document.querySelector('.popup_opened');
-    closeProfilePopup(popup);
+    closePopup(popup);
   }
 }
 
-function closeClick(evt) {
-  closeProfilePopup(evt.target);
+function handleOverlay(evt) {
+  if (evt.target.classList.contains("popup_opened")) {
+    closePopup(evt.target);
+  }
 }
 
 function openPopupAdd () {
   formAddCard.reset()
   openPopup(popupAdd);
-  resetError(popupAdd, config);
+  resetValidation(popupAdd, config);
 }
 
 //открытие попапа редоктирования профиля
@@ -69,24 +71,23 @@ function openProfilePopup() {
   nameInput.value = userNameElement.textContent;
   discriptionInput.value = userDiscriptionElement.textContent;
   openPopup(popupEditForm);
-  resetError(popupEditForm, config);
+  resetValidation(popupEditForm, config);
 }
 
 function openPopup (item) {
   item.classList.add('popup_opened');
-  addPopup(item);
+  setCloseListeners(item);
 }
 
 closeButtons.forEach(button => {
   const popup = button.closest('.popup');
-  button.addEventListener('click', () => closeProfilePopup(popup))
+  button.addEventListener('click', () => closePopup(popup))
   console.log(popup)
  })
 
-//закрытие попапа редактирования профиля
-function closeProfilePopup(button) {
+function closePopup(button) {
    button.classList.remove('popup_opened');
-   removePopup(button);
+   removeCloseListeners(button);
 }
 
 //сохранение изменений и закрытие попапа
@@ -94,7 +95,7 @@ function handleProfileFormSubmit (evt) {
   evt.preventDefault(); 
   userNameElement.textContent = nameInput.value;
   userDiscriptionElement.textContent = discriptionInput.value;
-  closeProfilePopup(popupEditForm);
+  closePopup(popupEditForm);
 }
 
 profileButtonEdit.addEventListener('click', () => openProfilePopup(popupEditForm));
@@ -152,7 +153,7 @@ formAddCard.addEventListener('submit', addCard);
 
 function addCard (card) {
   card.preventDefault();
-  closeProfilePopup(popupAdd);
+  closePopup(popupAdd);
   renderCard({
     name:inputPlace.value,
     link:inputLink.value,
