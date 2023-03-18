@@ -1,5 +1,5 @@
 const profileButtonEdit = document.querySelector('.profile__edit-button');
-const closeButtonsPopup = document.querySelectorAll('.popup__close-button');
+const closeButtons = document.querySelectorAll('.popup__close-button');
 const popupEditForm = document.querySelector('.popup_type_edit-form');
 const profileForm = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
@@ -37,18 +37,47 @@ const initialCards = [
   }
 ]; 
 
+function addPopup (popup) {
+  document.addEventListener('keydown', closeEsc);
+  popup.addEventListener('mousedown', closeClick);
+}
+
+function removePopup (popup) {
+  document.removeEventListener('keydown', closeEsc);
+  popup.removeEventListener('mousedown', closeClick);
+}
+
+function closeEsc(evt) {
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closeProfilePopup(popup);
+  }
+}
+
+function closeClick(evt) {
+  closeProfilePopup(evt.target);
+}
+
+function openPopupAdd () {
+  formAddCard.reset()
+  openPopup(popupAdd);
+  resetError(popupAdd, config);
+}
+
 //открытие попапа редоктирования профиля
 function openProfilePopup() {
   nameInput.value = userNameElement.textContent;
   discriptionInput.value = userDiscriptionElement.textContent;
   openPopup(popupEditForm);
+  resetError(popupEditForm, config);
 }
 
 function openPopup (item) {
   item.classList.add('popup_opened');
+  addPopup(item);
 }
 
-closeButtonsPopup.forEach(button => {
+closeButtons.forEach(button => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closeProfilePopup(popup))
   console.log(popup)
@@ -57,6 +86,7 @@ closeButtonsPopup.forEach(button => {
 //закрытие попапа редактирования профиля
 function closeProfilePopup(button) {
    button.classList.remove('popup_opened');
+   removePopup(button);
 }
 
 //сохранение изменений и закрытие попапа
@@ -76,9 +106,7 @@ const popupAdd = document.querySelector('.popup_type_add-form');
 const closeButtonsPopupAdd = document.querySelector('.popup__close-button_type_add');
 
 //открытие попапа добавления места
-profileButtonAdd.addEventListener('click', function(){
-  openPopup(popupAdd);
-});
+profileButtonAdd.addEventListener('click', openPopupAdd);
 
 
 
