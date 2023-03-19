@@ -85,9 +85,9 @@ closeButtons.forEach(button => {
   console.log(popup)
  })
 
-function closePopup(button) {
-   button.classList.remove('popup_opened');
-   removeCloseListeners(button);
+function closePopup(popup) {
+   popup.classList.remove('popup_opened');
+   removeCloseListeners(popup);
 }
 
 //сохранение изменений и закрытие попапа
