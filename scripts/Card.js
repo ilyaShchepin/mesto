@@ -7,7 +7,7 @@ export default class Card {
   }
 
   createCard() {
-    this._card = document.querySelector(this._templateSelector).content.querySelector('.element__list').cloneNode(true);
+    this._searchCard();
     this._cardElementList = this._card.querySelector('.element__like');
     this._title = this._card.querySelector('.element__title');
     this._title.textContent = this._name;
@@ -15,6 +15,7 @@ export default class Card {
     this._image.src = this._link;
     this._image.alt = this._name;
     this._setEventListener();
+    
     
     return this._card
   }
@@ -34,5 +35,9 @@ export default class Card {
     elementTrash.addEventListener('click', () => {
       this._deleteCard()});
     this._image.addEventListener('click', this._handleClickImage);
+  }
+
+  _searchCard() {
+    this._card = document.querySelector(this._templateSelector).content.querySelector('.element__list').cloneNode(true);
   }
 }

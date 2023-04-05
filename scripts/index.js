@@ -1,13 +1,13 @@
 import Card from "./Card.js"
-import { config, initialCards } from "./Constans.js";
+import { config, initialCards } from "./Constants.js";
 import { FormValidator } from "./FormValidator.js";
 
 const profileButtonEdit = document.querySelector('.profile__edit-button');
 const closeButtons = document.querySelectorAll('.popup__close-button');
 const popupEditForm = document.querySelector('.popup_type_edit-form');
-const profileForm = new FormValidator(config, document.querySelector('.popup__form_type_profile'));
-const formAddCard = new FormValidator(config, document.querySelector('.popup__form_type_card'));
-[profileForm, formAddCard].forEach((form) => form.enableValidation()); 
+const profileValidatorForm = new FormValidator(config, document.querySelector('.popup__form_type_profile'));
+const formValidatorAddCard = new FormValidator(config, document.querySelector('.popup__form_type_card'));
+[profileValidatorForm, formValidatorAddCard].forEach((FormValidator) => FormValidator.enableValidation()); 
 const nameInput = document.querySelector('.popup__input_type_name');
 const discriptionInput = document.querySelector('.popup__input_type_discription');
 const userNameElement = document.querySelector('.profile__title');
@@ -45,9 +45,9 @@ function handleOverlay(evt) {
 }
 
 function openPopupAdd () {
-  formAddCard.form.reset()
+  formValidatorAddCard.form.reset()
   openPopup(popupAdd);
-  formAddCard.resetValidation();
+  formValidatorAddCard.resetValidation();
 }
 
 //открытие попапа редоктирования профиля
@@ -55,7 +55,7 @@ function openProfilePopup() {
   nameInput.value = userNameElement.textContent;
   discriptionInput.value = userDiscriptionElement.textContent;
   openPopup(popupEditForm);
-  profileForm.resetValidation();
+  profileValidatorForm.resetValidation();
 }
 
 function openPopup (item) {
@@ -66,7 +66,6 @@ function openPopup (item) {
 closeButtons.forEach(button => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup))
-  console.log(popup)
  })
 
 function closePopup(popup) {
@@ -82,8 +81,8 @@ function handleProfileFormSubmit (evt) {
   closePopup(popupEditForm);
 }
 
-profileButtonEdit.addEventListener('click', () => openProfilePopup(popupEditForm));
-profileForm.form.addEventListener('submit', handleProfileFormSubmit);
+profileButtonEdit.addEventListener('click', () => openProfilePopup());
+profileValidatorForm.form.addEventListener('submit', handleProfileFormSubmit);
 
 //5 спринт
 const profileButtonAdd = document.querySelector('.profile__add-button');
@@ -107,17 +106,13 @@ function renderCard (card) {
 
 initialCards.forEach(item => renderCard(createCard(item)))
 
-formAddCard.form.addEventListener('submit', addCard);
+formValidatorAddCard.form.addEventListener('submit', addCard);
 
-function addCard (card) {
-  card.preventDefault();
-  closePopup(popupAdd);
-  renderCard({
-    name:inputPlace.value,
-    link:inputLink.value,
-  })
-  formAddCard.form.reset();
-}
+function addCard (card) { 
+  card.preventDefault(); 
+  closePopup(popupAdd); 
+  renderCard(createCard({name:inputPlace.value, link:inputLink.value}));
+  }
 
 function openImagePopup (card) {
   popupPic.src = card.link,

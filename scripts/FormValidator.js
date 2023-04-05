@@ -21,7 +21,7 @@ _hideInputError (input)   {
   input.classList.remove(this._config.inputErrorClass);
 };
 
-_isValid  (input)  {
+_toggleInputErrorState  (input)  {
   if (!input.validity.valid) {
     this._showInputError(input);
   } else {
@@ -33,7 +33,7 @@ _setEventListeners  ()  {
   
   this._inputList.forEach((input) => {
     input.addEventListener("input", () => {
-      this._isValid(input);
+      this._toggleInputErrorState(input);
       this._toggleButtonState();
     });
   });
@@ -47,7 +47,7 @@ enableValidation ()  {
 
 
 _hasInvalidInput() {
-  return this._inputList.some((inputElement) => {
+  return this._inputList.some(() => {
     return !inputElement.validity.valid;
   });
 }
